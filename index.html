@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus | Digital Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <div class="brand">NEXUS<span>.</span></div>
+            <div class="nav-actions">
+                <div class="search-wrapper">
+                    <input type="text" id="searchInput" placeholder="Search curated items...">
+                </div>
+                <button class="cart-trigger">
+                    <span class="icon">Cart</span>
+                    <span id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <div class="badge">Spring 2026 Collection</div>
+            <h1>Discover Premium Tech</h1>
+            
+            <div class="category-filter">
+                <button class="chip active">All</button>
+                <button class="chip">Smartphones</button>
+                <button class="chip">Laptops</button>
+                <button class="chip">Fragrances</button>
+                <button class="chip">Skincare</button>
+            </div>
+        </header>
+
+        <div id="productGrid" class="product-grid">
+            </div>
+    </main>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
