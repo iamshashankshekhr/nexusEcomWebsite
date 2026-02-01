@@ -4,6 +4,7 @@ let nextBtn = document.querySelector("#nextBtn")
 let currentPageDisplay = document.querySelector("#currentPageDisplay")
 let searchInput = document.querySelector("#searchInput")
 let productGrid = document.querySelector("#productGrid")
+let chip = document.querySelectorAll(".chip")
 let currentPage = 1
 let limit = 30
 
@@ -11,13 +12,13 @@ let limit = 30
 
 async function getData() {
 
-    let query = searchInput.value.trim();
+    
 
     let skip = (currentPage - 1) * limit;
 
     try {
 
-        let response = await fetch(`https://dummyjson.com/products?limit=30&skip=${skip}&select=title,price,images`);
+        let response = await fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}&select=title,price,images,category`);
         let data = await response.json();
         let products = data.products;
         console.log(products);
@@ -53,6 +54,7 @@ async function getData() {
     function upDate() {
         currentPageDisplay.innerText = currentPage;
         prevBtn.disabled = (currentPage === 1);
+        extBtn.disabled = (currentPage >= 4);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
