@@ -10,24 +10,25 @@ let limit = 30
 
 
 
-async function getData(){
+async function getData() {
 
-    // productGrid.innerHTML = "<p class='loading'>Loading page " + currentPage + "...</p>";
+    
 
     let skip = (currentPage - 1) * limit;
 
-    try{
+    try {
 
-        let response = await fetch(`https://dummyjson.com/products?limit=30&skip=${skip} &select=title,price,images`)
-    let data = await response.json()
-    let products = data.products
-    console.log(products)
-    // console.log(data)
-    
+        let response = await fetch(`https://dummyjson.com/products?limit=30&skip=${skip} &select=title,price,images`);
+        let data = await response.json();
+        let products = data.products;
+        console.log(products);
+        // console.log(data)
 
-    for (let item of products){
+        productGrid.innerHTML = "";
 
-        let card = `
+        for (let item of products) {
+
+            let card = `
         <div class="product-card">
                     <div class="img-container">
                         <img src="${item.images[0]}" alt="${item.title}">
@@ -42,29 +43,33 @@ async function getData(){
                     </div>
                 </div>
         `
-        productGrid.innerHTML += card
-    }
-    upDate()
+            productGrid.innerHTML += card;
+        }
+        upDate();
 
-    }catch(err){
-        console.error("ERROR AAYA: ",err)
+    } catch (err) {
+        console.error("ERROR AAYA: ", err);
     }
 
-    function upDate(){
-        currentPageDisplay.innerText() = currentPage;
+    function upDate() {
+        currentPageDisplay.innerText = currentPage;
         prevBtn.disabled = (currentPage === 1);
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+};
+
+
+nextBtn.addEventListener("click", () => {
+    currentPage++
+    getData()
+});
+
+prevBtn.addEventListener("click", () => {
+    if (currentPage > 1) {
+        currentPage--
     }
+});
 
-    nextBtn.addEventListener("click", () =>{
-        currentPage++
-        getData()
-    })
 
-    prevBtn.addEventListener("click", () => {
-        if (currentPage>1){
-            currentPage--
-        }
-    })
-}
 getData()
