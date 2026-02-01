@@ -68,6 +68,7 @@ nextBtn.addEventListener("click", () => {
 prevBtn.addEventListener("click", () => {
     if (currentPage > 1) {
         currentPage--
+        getData()
     }
 });
 
