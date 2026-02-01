@@ -1,5 +1,4 @@
 
-
 let prevBtn = document.querySelector("#prevBtn")
 let nextBtn = document.querySelector("#nextBtn")
 let currentPageDisplay = document.querySelector("#currentPageDisplay")
@@ -12,13 +11,13 @@ let limit = 30
 
 async function getData() {
 
-    
+    let query = searchInput.value.trim();
 
     let skip = (currentPage - 1) * limit;
 
     try {
 
-        let response = await fetch(`https://dummyjson.com/products?limit=30&skip=${skip} &select=title,price,images`);
+        let response = await fetch(`https://dummyjson.com/products?limit=30&skip=${skip}&select=title,price,images`);
         let data = await response.json();
         let products = data.products;
         console.log(products);
@@ -69,6 +68,13 @@ prevBtn.addEventListener("click", () => {
     if (currentPage > 1) {
         currentPage--
         getData()
+    }
+});
+searchInput.addEventListener("keydown", (e)=>{
+    
+    if (e.key === "Enter"){
+        currentPage = 1;
+        getData();
     }
 });
 

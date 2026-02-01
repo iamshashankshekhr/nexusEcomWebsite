@@ -173,3 +173,41 @@ h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem; }
 }
 
 .add-btn:hover { opacity: 0.8; }
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem 0;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+}
+
+.page-btn {
+    padding: 0.8rem 1.5rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.page-btn:hover:not(:disabled) {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+.page-btn:disabled {
+    background: var(--border);
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+.page-info {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-main);
+}
