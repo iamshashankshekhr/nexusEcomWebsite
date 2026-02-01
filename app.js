@@ -1,16 +1,24 @@
 
 
-
+let prevBtn = document.querySelector("#prevBtn")
+let nextBtn = document.querySelector("#nextBtn")
+let currentPageDisplay = document.querySelector("#currentPageDisplay")
 let searchInput = document.querySelector("#searchInput")
 let productGrid = document.querySelector("#productGrid")
+let currentPage = 1
+let limit = 30
+
+
 
 async function getData(){
 
+    // productGrid.innerHTML = "<p class='loading'>Loading page " + currentPage + "...</p>";
 
+    let skip = (currentPage - 1) * limit;
 
     try{
 
-        let response = await fetch('https://dummyjson.com/products?limit=10&skip=10&select=title,price,images')
+        let response = await fetch(`https://dummyjson.com/products?limit=30&skip=${skip} &select=title,price,images`)
     let data = await response.json()
     let products = data.products
     console.log(products)
@@ -36,9 +44,27 @@ async function getData(){
         `
         productGrid.innerHTML += card
     }
+    upDate()
 
     }catch(err){
         console.error("ERROR AAYA: ",err)
     }
+
+    function upDate(){
+        currentPageDisplay.innerText() = currentPage;
+        prevBtn.disabled = (currentPage === 1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    nextBtn.addEventListener("click", () =>{
+        currentPage++
+        getData()
+    })
+
+    prevBtn.addEventListener("click", () => {
+        if (currentPage>1){
+            currentPage--
+        }
+    })
 }
 getData()
